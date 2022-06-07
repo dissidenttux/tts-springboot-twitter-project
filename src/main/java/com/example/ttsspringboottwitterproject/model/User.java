@@ -1,5 +1,6 @@
 package com.example.ttsspringboottwitterproject.model;
 
+import com.example.ttsspringboottwitterproject.model.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,12 +11,15 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
 
+import org.springframework.security.core.context.SecurityContextHolder;
+
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")
@@ -35,4 +39,5 @@ public class User {
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
+
 }
